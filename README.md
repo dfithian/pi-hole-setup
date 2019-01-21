@@ -7,7 +7,7 @@
 * put the raspberry pi case and mount heat syncs and turn on and plug into router
 * get private ip address of router
 * get private ip address of pi from router
-* ssh to router: pi@<ip-address> password raspberry
+* ssh to router: `pi@<ip-address>` password raspberry
 * change password: `passwd`
 * sudo apt-get update
 * sudo apt-get upgrade
