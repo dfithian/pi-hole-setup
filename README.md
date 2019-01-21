@@ -12,6 +12,10 @@
 * sudo apt-get update
 * sudo apt-get upgrade
 * install pi hole: `curl -sSL https://install.pi-hole.net | sudo bash`
+  * save the password that is needed for the admin screen
+* configure local DNS to use private ip of raspberry pi, apply settings
+* browse to `http://192.168.1.121/admin/`
+  * use the password from above
 
 # DNS over HTTPS Steps
 * https://docs.pi-hole.net/guides/dns-over-https/
