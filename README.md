@@ -1,4 +1,5 @@
-# Pi Hole Steps
+# Pi Hole
+## Installation
 * get raspberry pi
 * download and unzip raspbian lite
 * get etcher
@@ -7,7 +8,7 @@
 * put the raspberry pi case and mount heat syncs and turn on and plug into router
 * get private ip address of router
 * get private ip address of pi from router
-* ssh to router: `pi@<ip-address>` password raspberry
+* ssh to pi: `pi@<ip-address>` password `raspberry`
 * change password: `passwd`
 * sudo apt-get update
 * sudo apt-get upgrade
@@ -17,7 +18,13 @@
 * browse to `http://192.168.1.121/admin/`
   * use the password from above
 
-# DNS over HTTPS Steps
+## Upgrade
+* ssh to pi: `pi@<ip-address>`
+* sudo apt-get update
+* sudo apt-get upgrade
+* `pihole -up`
+
+## DNS over HTTPS Steps
 * https://docs.pi-hole.net/guides/dns-over-https/
 * `wget https://bin.equinox.io/c/VdrWdbjqyF/cloudflared-stable-linux-arm.tgz`
 * `tar -xvzf cloudflared-stable-linux-arm.tgz`
@@ -54,8 +61,8 @@
 * `sudo systemctl status cloudflared`
 * `dig @127.0.0.1 -p 5053 google.com` # verify
 
-# Other Notes
-## From apt-get upgrade:
+## Other Notes
+### From apt-get upgrade:
 ```
 apt-listchanges: Can't set locale; make sure $LC_* and $LANG are correct!
 Reading changelogs... Done
