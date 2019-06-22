@@ -61,6 +61,26 @@
 * `sudo systemctl status cloudflared`
 * `dig @127.0.0.1 -p 5053 google.com` # verify
 
+## Multiple WLANs
+
+Source: https://wiki.dd-wrt.com/wiki/index.php/Multiple_WLANs
+
+* This is _not_ a WAP
+* Do everything the article says up to "3.2 Command Method"
+* Change `dhcp-option=br1,6,[DNS IP 1],[DNS IP 2]` to `dhcp-option=br1,6,8.8.8.8`
+* Under "Restricting Access", did this:
+```bash
+iptables -t nat -I POSTROUTING -o `get_wanface` -j SNAT --to `nvram get wan_ipaddr`
+iptables -I FORWARD -i br1 -m state --state NEW -j ACCEPT
+iptables -I FORWARD -p tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
+iptables -I FORWARD -i br1 -o br0 -m state --state NEW -j DROP
+iptables -I FORWARD -i br0 -o br1 -m state --state NEW -j DROP
+iptables -I FORWARD -i br1 -d `nvram get wan_ipaddr`/`nvram get wan_netmask` -m state --state NEW -j DROP
+iptables -I FORWARD -i br1 -d `nvram get lan_ipaddr`/`nvram get lan_netmask` -m state --state NEW -j DROP
+iptables -t nat -I POSTROUTING -o br0 -j SNAT --to `nvram get lan_ipaddr`
+```
+* Always be sure to save/apply/reboot whenever in doubt. Incremental progress is better than no progress.
+
 ## Other Notes
 ### From apt-get upgrade:
 ```
