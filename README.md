@@ -94,3 +94,7 @@ perl: warning: Please check that your locale settings:
 	LANG = "en_GB.UTF-8"
     are supported and installed on your system.
 ```
+
+## GCP
+
+https://github.com/rajannpatel/Pi-Hole-on-Google-Compute-Engine-Free-Tier-with-Full-Tunnel-and-Split-Tunnel-Wireguard-VPN-Configs/blob/master/CONFIGURATION.md
